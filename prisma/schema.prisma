@@ -11,24 +11,24 @@ datasource db {
 }
 
 model Produto {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   description String
   active      Boolean
-  createdAt   DateTime @default(now())
+  createdAt   String
   imagem      String
-  deletedAt   DateTime
+  deletedAt   String?
 
   @@map("produtos")
 }
 
 model Seller {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
   name      String
-  celNumber Int
-  createdAt DateTime @default(now())
+  celPhone  Int
+  createdAt String
   active    Boolean
-  deletedAt DateTime
+  deletedAt String?
 
   @@map("sellers")
 }

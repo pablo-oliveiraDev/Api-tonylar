@@ -9,6 +9,6 @@ app.use(express.urlencoded({
 })
 );
 app.use(express.json());
-app.use(cors());
+//app.use(cors());
 app.use(router);
 app.listen(port,async()=>console.log(`Aplicação iniciada na porta ${port}!`));

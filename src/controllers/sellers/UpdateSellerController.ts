@@ -1,23 +1,26 @@
 import { Request, Response } from 'express';
 import { prismaClient } from '../../database/prismaClient';
+import { format } from 'date-fns';
 interface sellerBody {
     id: string,
     name: string,
-    celNumber: number
+    celPhone: number
 };
 export class UpdateSellerController {
     async handle(request: Request, response: Response) {
+        let deletedAt = Date.now();
         const {
             id,
             name,
-            celNumber
+            celPhone
         }: sellerBody = request.body;
         const seller = await prismaClient.seller.update({
             where: {
                 id: id
             }, data: {
                 name: name,
-                celNumber: celNumber,
+                celPhone: celPhone,
+                createdAt: format(deletedAt, ('dd/MM/yyyy HH:mm:ss')),
             },
         });
         return response.status(200).json({ msg: 'Seller as updated!', seller });
