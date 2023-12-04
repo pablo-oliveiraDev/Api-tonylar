@@ -11,6 +11,7 @@ interface sellerBody {
 export class CreateSellerController {
     async handle(request: Request, response: Response) {
         let createdAt = Date.now();
+
         const {
             name,
             celPhone
@@ -20,6 +21,7 @@ export class CreateSellerController {
                 name: name,
                 celPhone: celPhone,
                 active: true,
+                whatsLink: `http://wa.me/${celPhone}`,
                 createdAt: format(createdAt, ("dd/MM/yyyy HH:mm:ss")),
 
             },

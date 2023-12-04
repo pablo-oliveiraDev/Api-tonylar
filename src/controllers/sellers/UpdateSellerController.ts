@@ -8,7 +8,7 @@ interface sellerBody {
 };
 export class UpdateSellerController {
     async handle(request: Request, response: Response) {
-        let deletedAt = Date.now();
+        let createdAt = Date.now();
         const {
             id,
             name,
@@ -20,7 +20,9 @@ export class UpdateSellerController {
             }, data: {
                 name: name,
                 celPhone: celPhone,
-                createdAt: format(deletedAt, ('dd/MM/yyyy HH:mm:ss')),
+                active: true,
+                whatsLink: `http://wa.me/${celPhone}`,
+                createdAt: format(createdAt, ("dd/MM/yyyy HH:mm:ss")),                
             },
         });
         return response.status(200).json({ msg: 'Seller as updated!', seller });

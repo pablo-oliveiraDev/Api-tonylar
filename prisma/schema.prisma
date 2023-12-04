@@ -28,6 +28,7 @@ model Seller {
   celPhone  Int
   createdAt String
   active    Boolean
+  whatsLink String
   deletedAt String?
 
   @@map("sellers")
