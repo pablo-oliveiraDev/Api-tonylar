@@ -10,20 +10,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Produto {
-  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+model Product {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   description String
   active      Boolean
   createdAt   String
-  imagem      String
+  image       String
+  price       Float
   deletedAt   String?
 
-  @@map("produtos")
+  @@map("products")
 }
 
 model Seller {
-  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
   name      String
   celPhone  Int
   createdAt String
