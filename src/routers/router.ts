@@ -9,6 +9,7 @@ import { FindActiveSellerController } from "../controllers/sellers/FindActiveSel
 //import products
 import { CreateProductController } from "../controllers/product/CreateProductController";
 import { FindAllProductsControllers } from "../controllers/product/FindAllProductsControllers";
+import { UpdateProductController } from "../controllers/product/UpdateProductController";
 
 
 const router = Router();
@@ -41,6 +42,8 @@ router.patch("/softDeleteSeller", softDeleteSeller.handle);
 const updateSeller = new UpdateSellerController();
 router.patch("/updateSeller", updateSeller.handle);
 
+const updateProduct=new UpdateProductController();
+router.patch("/updateProduct", updateProduct.handle);
 //deletes
 
 //random sellers
