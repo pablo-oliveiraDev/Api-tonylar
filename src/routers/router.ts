@@ -10,6 +10,8 @@ import { FindActiveSellerController } from "../controllers/sellers/FindActiveSel
 import { CreateProductController } from "../controllers/product/CreateProductController";
 import { FindAllProductsControllers } from "../controllers/product/FindAllProductsControllers";
 import { UpdateProductController } from "../controllers/product/UpdateProductController";
+import { SOftDeleteProductController } from "../controllers/product/SOftDeleteProductController";
+import { FindActiveProductsController } from "../controllers/product/FindActiveProductsController";
 
 
 const router = Router();
@@ -34,15 +36,21 @@ router.get("/sellerById/:id", findSellerById.handle);
 const activeSellers = new FindActiveSellerController();
 router.get("/activeSellers", activeSellers.handle);
 
+const findActiveProduct = new FindActiveProductsController();
+
+
 //softDelete
 const softDeleteSeller = new DeleteSellerByIdController();
-router.patch("/softDeleteSeller", softDeleteSeller.handle);
+router.patch("/softDeleteSeller", softDeleteSeller.handle)
+
+const softDeleteProduct = new SOftDeleteProductController();
+router.patch("/softDeleteProduct", softDeleteProduct.handle);
 
 //updates
 const updateSeller = new UpdateSellerController();
 router.patch("/updateSeller", updateSeller.handle);
 
-const updateProduct=new UpdateProductController();
+const updateProduct = new UpdateProductController();
 router.patch("/updateProduct", updateProduct.handle);
 //deletes
 

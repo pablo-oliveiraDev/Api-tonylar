@@ -31,6 +31,7 @@ export class UpdateProductController {
                 price: convertValue(price),
                 active: true,
                 image: image,
+                deletedAt:null,
             },
         });
         return response.status(200).json({msg:"Product as Updated!",product});
