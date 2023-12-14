@@ -1,4 +1,5 @@
 import { Router } from "express";
+import Multer from "multer";
 import { CreateSellerController } from "../controllers/sellers/CreateSellerController";
 import { FindAllSellers } from "../controllers/sellers/FindAllSellers";
 import { DeleteSellerByIdController } from "../controllers/sellers/DeleteSellerByIdController";
@@ -16,13 +17,14 @@ import { CreateLoginController } from "../controllers/Login/CreateLoginControlle
 import { CreateLogedController } from "../controllers/Login/CreateLogedController";
 
 
-const router = Router();
+const router: Router = Router();
+const upload = Multer({ dest: 'Uploads/' });
 //Creates
 const createSeller = new CreateSellerController();
 router.post('/seller', createSeller.handle);
 
 const createProduct = new CreateProductController();
-router.post('/createProduct', createProduct.handle);
+router.post('/createProduct', upload.single("imgProduct"), createProduct.handle);
 
 const createLogin = new CreateLoginController();
 router.post('/createLogin', createLogin.handle);
