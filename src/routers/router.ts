@@ -12,6 +12,8 @@ import { FindAllProductsControllers } from "../controllers/product/FindAllProduc
 import { UpdateProductController } from "../controllers/product/UpdateProductController";
 import { SOftDeleteProductController } from "../controllers/product/SOftDeleteProductController";
 import { FindActiveProductsController } from "../controllers/product/FindActiveProductsController";
+import { CreateLoginController } from "../controllers/Login/CreateLoginController";
+import { CreateLogedController } from "../controllers/Login/CreateLogedController";
 
 
 const router = Router();
@@ -21,6 +23,12 @@ router.post('/seller', createSeller.handle);
 
 const createProduct = new CreateProductController();
 router.post('/createProduct', createProduct.handle);
+
+const createLogin = new CreateLoginController();
+router.post('/createLogin', createLogin.handle);
+
+const createLoged = new CreateLogedController();
+router.post("/loged", createLoged.handle);
 
 //get all
 const findAllSellers = new FindAllSellers();

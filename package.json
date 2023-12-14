@@ -18,7 +18,7 @@
   "scripts": {
     "test": "jest --no-cache",
     "dev": "ts-node-dev --transpile-only --respawn --ignore-watch node_modules ./src/server.ts",
-    "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
+    "build": "npx babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
     "start": "node dist/server.js"
   },
   "keywords": [],

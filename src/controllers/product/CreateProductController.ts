@@ -28,10 +28,14 @@ export class CreateProductController {
             data: {
                 name: name,
                 description: description,
-                price: convertValue(price),
-                image: image,
+                price: convertValue(price),                
                 active: true,
                 createdAt: format(createdAt, ("dd/MM/yyyy HH:mm:ss")),
+                productImages:{
+                    create:{
+                        image:[]
+                    },
+                }
             },
             
         });
