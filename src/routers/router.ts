@@ -8,6 +8,8 @@ import { FindSellerByIdController } from "../controllers/sellers/FindSellerByIdC
 
 
 const router = Router();
+
+//---------------Sellers------------
 //Creates
 const createSeller = new CreateSellerController();
 router.post('/seller', createSeller.handle);
