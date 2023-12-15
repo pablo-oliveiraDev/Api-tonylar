@@ -6,19 +6,18 @@ import { DeleteSellerByIdController } from "../controllers/sellers/DeleteSellerB
 import { UpdateSellerController } from "../controllers/sellers/UpdateSellerController";
 import { randomGetSellerController } from "../controllers/sellers/randomGetSellerController";
 import { FindSellerByIdController } from "../controllers/sellers/FindSellerByIdController";
-import { FindActiveSellerController } from "../controllers/sellers/FindActiveSellerController";
-//import products
 import { CreateProductController } from "../controllers/product/CreateProductController";
-import { FindAllProductsControllers } from "../controllers/product/FindAllProductsControllers";
-import { UpdateProductController } from "../controllers/product/UpdateProductController";
-import { SOftDeleteProductController } from "../controllers/product/SOftDeleteProductController";
-import { FindActiveProductsController } from "../controllers/product/FindActiveProductsController";
 import { CreateLoginController } from "../controllers/Login/CreateLoginController";
 import { CreateLogedController } from "../controllers/Login/CreateLogedController";
+import { FindAllProductsControllers } from "../controllers/product/FindAllProductsControllers";
+import { FindActiveProductsController } from "../controllers/product/FindActiveProductsController";
+import { SOftDeleteProductController } from "../controllers/product/SOftDeleteProductController";
+import { UpdateProductController } from "../controllers/product/UpdateProductController";
+import { FindActiveSellerController } from "../controllers/sellers/FindActiveSellerController";
 
 
-const router: Router = Router();
-const upload = Multer({ dest: 'Uploads/' });
+const router:Router = Router();
+const upload = Multer();
 //Creates
 const createSeller = new CreateSellerController();
 router.post('/seller', createSeller.handle);
@@ -61,7 +60,7 @@ const updateSeller = new UpdateSellerController();
 router.patch("/updateSeller", updateSeller.handle);
 
 const updateProduct = new UpdateProductController();
-router.patch("/updateProduct", updateProduct.handle);
+router.patch("/updateProduct", upload.single("imgProduct"), updateProduct.handle);
 //deletes
 
 //random sellers

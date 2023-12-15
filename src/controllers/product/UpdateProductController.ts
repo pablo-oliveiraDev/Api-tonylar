@@ -5,16 +5,19 @@ interface productBody {
     name: string
     description: string
     price: string
-    image: string
+    imgId: string
+
 };
 export class UpdateProductController {
     async handle(request: Request, response: Response) {
+        const imgBuffer = request.file?.buffer.toString('base64');
         const {
             id,
             name,
             description,
             price,
-            image,
+            imgId,
+
         }: productBody = request.body;
         function convertValue(price: string): number {
             const convertedPrice = price.replace(/\./g, "").replace(",", ".");
@@ -30,10 +33,19 @@ export class UpdateProductController {
                 description: description,
                 price: convertValue(price),
                 active: true,
-                image: image,
-                deletedAt:null,
+                deletedAt: null,
+                productImages: {
+                    update: {
+                        where: {
+                            id: imgId,
+                        },
+                        data: {
+                            image: imgBuffer,
+                        },
+                    },
+                },
             },
         });
-        return response.status(200).json({msg:"Product as Updated!",product});
+        return response.status(200).json({ msg: "Product as Updated!", product });
     }
 }

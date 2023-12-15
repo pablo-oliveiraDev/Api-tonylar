@@ -1,21 +1,21 @@
 import { Request, Response } from 'express';
 import { prismaClient } from '../../database/prismaClient';
 import { format } from 'date-fns';
-import { Buffer } from 'buffer';
+
 
 
 interface productBody {
     name: string
     description: string
     price: string
+    image?:string
 
 };
 
 export class CreateProductController {
 
     async handle(request: Request, response: Response) {
-
-        const imgBuffer: any = request.file?.buffer;
+        const imgBuffer:any= request.file?.buffer.toString('base64');        
         const createdAt = Date.now();
         const {
             name,
@@ -39,10 +39,13 @@ export class CreateProductController {
                 createdAt: format(createdAt, ("dd/MM/yyyy HH:mm:ss")),
                 productImages: {
                     create: {
-                        image: imgBuffer,
+                        image:imgBuffer
                     },
                 }
             },
+            include:{
+                productImages:true
+            }
 
         });
         return response.status(201).json({ msg: 'Product as created!', product });
