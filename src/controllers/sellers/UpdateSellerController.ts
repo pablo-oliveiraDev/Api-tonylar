@@ -14,17 +14,21 @@ export class UpdateSellerController {
             name,
             celPhone
         }: sellerBody = request.body;
-        const seller = await prismaClient.seller.update({
-            where: {
-                id: id
-            }, data: {
-                name: name,
-                celPhone: celPhone,
-                active: true,
-                whatsLink: `http://wa.me/${celPhone}`,
-                createdAt: format(createdAt, ("dd/MM/yyyy HH:mm:ss")),                
-            },
-        });
-        return response.status(200).json({ msg: 'Seller as updated!', seller });
-    }
-}
+        try {
+            const seller = await prismaClient.seller.update({
+                where: {
+                    id: id
+                }, data: {
+                    name: name,
+                    celPhone: celPhone,
+                    active: true,
+                    whatsLink: `http://wa.me/${celPhone}`,
+                    createdAt: format(createdAt, ("dd/MM/yyyy HH:mm:ss")),
+                },
+            });
+            return response.status(200).json({ msg: 'Seller as updated!', seller });
+        }catch{
+            return response.status(400).json({msg:'Error on update Seller!'});
+        };
+    };
+};
