@@ -12,13 +12,17 @@ export class CreateLoginController {
             LoginName,
             password,
         }: LoginBody = request.body;
-        const Login = await prismaClient.login.create({
-            data: {
-                CPF: CPF,
-                LoginName: LoginName,
-                password: password,
-            },
-        });
-        return response.status(201).json({ msg: "Login as Created!", Login });
-    }
-}
+        try {
+            const Login = await prismaClient.login.create({
+                data: {
+                    CPF: CPF,
+                    LoginName: LoginName,
+                    password: password,
+                },
+            });
+            return response.status(201).json({ msg: "Login as Created!", Login });
+        } catch {
+            return response.status(400).json({ msg: "Error on Creating the User" });
+        };
+    };
+};
