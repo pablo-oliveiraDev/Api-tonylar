@@ -46,6 +46,9 @@ export class UpdateProductController {
                         },
                     },
                 },
+                include: {
+                    productImages: true
+                }
             });
             return response.status(200).json({ msg: "Product as Updated!", product });
         } catch {
