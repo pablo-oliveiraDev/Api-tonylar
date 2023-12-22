@@ -9,7 +9,9 @@ export class FindAllProductsControllers {
                 include: {
                     productImages: true
                 }
+
             });
+
             return response.status(200).json(product);
         } catch {
             return response.status(404).json({ msg: "Error in search products" });

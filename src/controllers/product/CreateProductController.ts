@@ -49,6 +49,7 @@ export class CreateProductController {
                 }
 
             });
+            
             return response.status(201).json({ msg: 'Product as created!', product });
         } catch {
             return response.status(500).json({ msg: 'Error to create the Product' });

@@ -8,18 +8,26 @@ class UpdateSellerController {
     async handle(request, response) {
         let createdAt = Date.now();
         const { id, name, celPhone } = request.body;
-        const seller = await prismaClient_1.prismaClient.seller.update({
-            where: {
-                id: id
-            }, data: {
-                name: name,
-                celPhone: celPhone,
-                active: true,
-                whatsLink: `http://wa.me/${celPhone}`,
-                createdAt: (0, date_fns_1.format)(createdAt, ("dd/MM/yyyy HH:mm:ss")),
-            },
-        });
-        return response.status(200).json({ msg: 'Seller as updated!', seller });
+        try {
+            const seller = await prismaClient_1.prismaClient.seller.update({
+                where: {
+                    id: id
+                }, data: {
+                    name: name,
+                    celPhone: celPhone,
+                    active: true,
+                    whatsLink: `http://wa.me/${celPhone}`,
+                    createdAt: (0, date_fns_1.format)(createdAt, ("dd/MM/yyyy HH:mm:ss")),
+                },
+            });
+            return response.status(200).json({ msg: 'Seller as updated!', seller });
+        }
+        catch {
+            return response.status(400).json({ msg: 'Error on update Seller!' });
+        }
+        ;
     }
+    ;
 }
 exports.UpdateSellerController = UpdateSellerController;
+;

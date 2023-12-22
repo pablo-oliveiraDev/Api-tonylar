@@ -9,16 +9,24 @@ class DeleteSellerByIdController {
     async handle(request, response) {
         const deletedAt = Date.now();
         const { id } = request.body;
-        const seller = await prismaClient_1.prismaClient.seller.update({
-            where: {
-                id: id
-            },
-            data: {
-                active: false,
-                deletedAt: (0, date_fns_1.format)(deletedAt, ('dd/MM/yyyy HH:mm:ss')),
-            }
-        });
-        return response.status(201).json({ msg: 'Seller as disabled!', seller });
+        try {
+            const seller = await prismaClient_1.prismaClient.seller.update({
+                where: {
+                    id: id
+                },
+                data: {
+                    active: false,
+                    deletedAt: (0, date_fns_1.format)(deletedAt, ('dd/MM/yyyy HH:mm:ss')),
+                }
+            });
+            return response.status(201).json({ msg: 'Seller as disabled!', seller });
+        }
+        catch {
+            return response.status(400).json({ error: "Error on disable the Seller!" });
+        }
+        ;
     }
+    ;
 }
 exports.DeleteSellerByIdController = DeleteSellerByIdController;
+;
