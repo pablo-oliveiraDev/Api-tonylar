@@ -39,7 +39,7 @@ const findAllProducts = new FindAllProductsControllers();
 router.get("/allProducts", findAllProducts.handle);
 
 const findActiveProducts = new FindActiveProductsController();
-router.get("/activeproducts",findActiveProducts.handle);
+router.get("/activeproducts",findActiveProducts.handle)
 
 //get find one
 const findSellerById = new FindSellerByIdController();
@@ -48,7 +48,7 @@ router.get("/sellerById/:id", findSellerById.handle);
 const activeSellers = new FindActiveSellerController();
 router.get("/activeSellers", activeSellers.handle);
 
-const findActiveProduct = new FindActiveProductsController();
+
 
 
 //softDelete
