@@ -6,11 +6,9 @@ export class FindActiveProductsController {
         try {
             const product = await prismaClient.product.findMany({
                 where: {
-                    active: true
+                    active: true,
                 },
-                include: {
-                    productImages: true
-                }
+               
             });
             return response.status(200).json(product);
         } catch {

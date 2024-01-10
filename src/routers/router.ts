@@ -39,7 +39,7 @@ const findAllProducts = new FindAllProductsControllers();
 router.get("/allProducts", findAllProducts.handle);
 
 const findActiveProducts = new FindActiveProductsController();
-router.get("/activeproducts",findActiveProducts.handle)
+router.get("/activeproducts",findActiveProducts.handle);
 
 //get find one
 const findSellerById = new FindSellerByIdController();
@@ -49,11 +49,9 @@ const activeSellers = new FindActiveSellerController();
 router.get("/activeSellers", activeSellers.handle);
 
 
-
-
 //softDelete
 const softDeleteSeller = new DeleteSellerByIdController();
-router.patch("/softDeleteSeller", softDeleteSeller.handle)
+router.patch("/softDeleteSeller", softDeleteSeller.handle);
 
 const softDeleteProduct = new SOftDeleteProductController();
 router.patch("/softDeleteProduct", softDeleteProduct.handle);
