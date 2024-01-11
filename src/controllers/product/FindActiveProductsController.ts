@@ -8,11 +8,13 @@ export class FindActiveProductsController {
                 where: {
                     active: true,
                 },
-               
+                include:{
+                    productImages:true
+                },
             });
             return response.status(200).json(product);
         } catch {
-            return response.status(500).json({msg:"Product as not found!Please try again!"});
+            return response.status(500).json({ msg: "Product as not found!Please try again!" });
         };
     };
 };
