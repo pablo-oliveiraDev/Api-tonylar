@@ -7,13 +7,13 @@ class FindActiveProductsController {
         try {
             const product = await prismaClient_1.prismaClient.product.findMany({
                 where: {
-                    active: true
+                    active: true,
                 },
                 include: {
                     productImages: true
-                }
+                },
             });
-            return response.status(200).json(product);
+            return response.status(201).json(product);
         }
         catch {
             return response.status(500).json({ msg: "Product as not found!Please try again!" });

@@ -12,7 +12,8 @@ export class FindActiveProductsController {
                     productImages:true
                 },
             });
-            return response.status(200).json(product);
+            
+            return response.status(201).json(product);
         } catch {
             return response.status(500).json({ msg: "Product as not found!Please try again!" });
         };
